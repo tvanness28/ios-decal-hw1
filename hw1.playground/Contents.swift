@@ -22,11 +22,11 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [The arguments passed into the **init** function can either be of type String or nil. The instance variable are also of the type optional String, however a runtime error will be thrown if they recieve a value of nil. So both share the same type.]
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(_ words: [String]) -> Bool {
+    class func arePalindromes(_ words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reversed())}
         let numElements = words.count
         
@@ -35,20 +35,21 @@ class Words {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [When the for loop exits the function doesn't return a bool value which is expected and errors out. This function, according to the calls at the bottom, also was intended to be called through the class instead of through an instance of the class. Therefore the class descriptor was required in the function declaration.]
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
-        var lenA = self.wordA.characters.count
-        var lenB = self.wordB.characters.count
+    func isAnagram() -> Bool {
+        var countLetters = [Character : Int]() //Line X
+        let lenA = self.wordA.characters.count
+        let lenB = self.wordB.characters.count
         
         if lenA != lenB {
             return false
@@ -81,7 +82,7 @@ class Words {
             }
         }
         
-        return nil
+        return true
     }
 //: ### What is the problem with declaring **countLetters** as we do in **Line X**,
 //: ### and then using it in **Line Y**? Fix it (by only changing **Line X**).
@@ -89,7 +90,7 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [Declaring **countLetters** in the original manner left it uninitialized which created a problem when Line Y attempted to access a value through a key. To fix it it needed to be initialized to an empty dictionary so key searching was possible. This function was also like the opposite of the previous. The calls below indicated that it was meant to be called on an object instance instead of directly on the class. Therefore the class descriptor needed to be removed from the function declaration.]
     
     
 }
